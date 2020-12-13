@@ -12,7 +12,7 @@ pipeline {
             {
                 steps
                 {
-                    echo "Junit Passsed  Successfully!!";
+                    sh 'echo \'test chrome\' ; exit 1'
                 }
             }
             stage('Quality-Gate')
