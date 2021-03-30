@@ -4,13 +4,9 @@
 // declarative pipeline
 
 pipeline {
-    agent { 
-        label 'OPS_Ubuntu_Agent-slave' 
-    }
+    agent any
 
-    environment { 
-        https_proxy = 'http://apac.zscaler.philips.com:9480'
-    }
+   
 
     stages {
 
