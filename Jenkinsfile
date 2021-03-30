@@ -15,8 +15,8 @@ pipeline {
                 script {
                     properties([parameters([file(description: 'Upload HSDP Cost excel sheet( ex : imcs-billing-report-yyyy-mm-dd.xlsx)', name: 'C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\pipeline\\imcs-billing-report-2021-03-14.xlsx'), 
                                             file(description: 'Upload HSDP Cost excel sheet( ex : imcs-billing-report-yyyy-mm-dd.xlsx)', name: 'C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\pipeline\\HSDP-Trend.xlsx')])])
-                    echo "HSDP Cost excel file path is ${params.C:\WINDOWS\system32\config\systemprofile\AppData\Local\Jenkins\.jenkins\workspace\pipeline\imcs-billing-report-2021-03-14.xlsx}"
-                    echo "HSDP Trend  excel file path is ${params.C:\WINDOWS\system32\config\systemprofile\AppData\Local\Jenkins\.jenkins\workspace\pipeline\imcs-billing-report-2021-03-14.xlsx}"
+                    echo "HSDP Cost excel file path is ${C:\WINDOWS\system32\config\systemprofile\AppData\Local\Jenkins\.jenkins\workspace\pipeline\imcs-billing-report-2021-03-14.xlsx}"
+                    echo "HSDP Trend  excel file path is ${C:\WINDOWS\system32\config\systemprofile\AppData\Local\Jenkins\.jenkins\workspace\pipeline\imcs-billing-report-2021-03-14.xlsx}"
 
                     
 
