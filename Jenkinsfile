@@ -1,52 +1,43 @@
+#!/usr/bin/env groovy
+
+// Jenkinsfile version 0.1
+// declarative pipeline
+
 pipeline {
-    agent any
-    stages{
-            stage('Compile')
-            {
-                steps
-                {
-                    echo "Compiled Successfully!!";
-                }
-            }
-            stage('Junit')
-            {
-                steps
-                {
-                     echo "test completed";
-                }
-            }
-            stage('Quality-Gate')
-            {
-                steps
-                {
-                    echo "SonarQube Quality Gate passed successfully!!";
-                }
-            }
-            stage('Deploy')
-            {
-                steps
-                {
-                    echo "PAss!";
+    agent { 
+        label 'OPS_Ubuntu_Agent-slave' 
+    }
+
+    environment { 
+        https_proxy = 'http://apac.zscaler.philips.com:9480'
+    }
+
+    stages {
+
+        stage("Stage 1") {
+            steps {
+                script {
+                    properties([parameters([file(description: 'Upload HSDP Cost excel sheet( ex : imcs-billing-report-yyyy-mm-dd.xlsx)', name: 'imcs-billing-report'), 
+                    file(description: 'Upload HSDP Trend excel sheet(ex:HSDP-Trend.xlsx)', name: 'HSDP-Trend')])])
+                    echo "HSDP Cost excel file path is ${params.imcs-billing-report}"
+                    echo "HSDP Trend  excel file path is ${params.HSDP-Trend}"
+
+                    
+
                 }
             }
         }
-        post {
-            always{
-                echo "This will always run"
+
+        stage("stage 2") {
+            steps {
+                script {
+                    println("Stage 2") 
+                    sh "HSDP-Trend.py ${params.imcs-billing-report} ${params.HSDP-Trend} " 
+                }
             }
-            success{
-                echo "This will run on;y if successful"
-            }
-            failure{
-                echo "This will run only if failed"
-            }
-            unstable{
-                echo "This will run only if the run was marked as unstable"
-            }
-            changed{
-                echo "This will run only if state of pipeline has changed"
-                echo " For example if the pipeline was previously faling but now it is successful"
-            }
-       
         }
-}
+
+    } //end of stages
+} //end of pipeline
+
+
